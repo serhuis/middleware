@@ -1,0 +1,15 @@
+<form method="POST" action="config?wifi=stasave">
+STA mode: <select name="staEnabled">
+<option value ="true">Enabled</option> \
+<option value ="false" selected>Disabled</option>
+</select>
+<h3>Client Settings</h3>
+<input type="text" name="sta_ssid"value=""/> WiFi Network<br>
+<input type="password" name="sta_pass" value="" id="pass_id"> WiFi Password<br>
+<br><input type="submit" value="Save settings\"/>
+</form>
+<hr>
+<h3>WiFi reboot</h3>
+<form method="POST" action="config?system=reboot">
+<input type=SUBMIT value="Reboot">
+</form>

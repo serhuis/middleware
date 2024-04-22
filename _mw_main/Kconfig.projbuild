@@ -1,0 +1,43 @@
+menu "MiddleWare"
+
+	config ZHAGA_NVS_ENABLE
+	bool "Enable  Zhaga NV memory"
+	default false
+rsource "../nv_memory/Kconfig"
+        
+    config ENABLE_FAT_FS
+    bool "Enable FAT filesystem"
+    default true
+    help
+        Enable filesystem to store loaded files (firmwares, etc...)
+rsource "../storage/Kconfig"
+
+    config ENABLE_BLE
+    bool "Enable BLE"
+    default true
+    help
+        Enable BLE functionality (GATT based)
+rsource "../ble/Kconfig"
+
+    config ZHAGA_CONNECT_WIFI
+    bool "connect using WiFi interface"
+    default y
+    help
+        Protocol examples can use Wi-Fi and/or Ethernet to connect to the network.
+        Choose this option to connect with WiFi
+rsource "../wifi/Kconfig"
+
+    config TCP_SOCKET
+    bool   "Enable TCP socket"
+    default true
+    help
+        Enable TCP socket 
+rsource "../tcp_server/Kconfig"
+
+    config ENABLE_MQTT_CLIENT
+    bool "Enable MQTT"
+    default false
+    help
+        Enable MQTT client service
+rsource "../mqtt_zhaga/Kconfig"
+endmenu

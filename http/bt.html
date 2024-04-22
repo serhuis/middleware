@@ -1,0 +1,80 @@
+<hr>
+<div>
+    <table>
+        <form name="sett">
+            <tr>
+                <td>Status :</td>
+                <td><input type="text" id="7207" name="Status" readonly></td>
+            </tr>
+            <tr>
+                <td>Paired device:</td>
+                <td><input type="text" id="7201" name="Paired" readonly /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="button" value="Conect" onclick="bt_conn()" />
+                    <input type="button" value="Disconnect" onclick="bt_discon()" />
+
+                </td>
+            </tr>
+            <tr>
+                <td>Autoconnect:</td>
+                <td>
+                    <input id="7205" type="text" name="auto_connect_get" value="" hidden
+                        onchange="update_checkbox('check_autoconnect', value)" />
+                    <input type="checkbox" id="check_autoconnect" onclick="set_autoconnect(this.checked)" />
+                </td>
+            </tr>
+        </form>
+    </table>
+    <hr>
+</div>
+<div>
+    <table>
+        <form name="SetPairedForm">
+            <tr>
+                <td>Found devices:</td>
+                <td><select id="7209" name="DevList" value="" style="width:100%;"
+                        onchange="if (this.selectedIndex) {set_paired.value = this.options[this.selectedIndex].text} else 
+                        set_paired.value = '' ">
+                        <option> --Select to pair--</option>
+                    </select></td>
+            </tr>
+            <tr>
+                <td>Pair device:</td>
+                <td><input type="text" id="7202" name="set_paired" value=""></td>
+            </tr>
+            <tr>
+                <td>Passkey:</td>
+                <td><input type="password" name="bt_passkey" value="" id="7204"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="checkbox" onclick="fnShowPass(pass_id)">Show Password</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Save settings"></td>
+            </tr>
+        </form>
+    </table>
+</div>
+
+<script>
+
+    function set_autoconnect(state) {
+        if (state) ws_send("[{\"id\":\"7206\",\"name\":\"\", \"value\":\"1\"}]");
+        else ws_send("[{\"id\":\"7206\",\"name\":\"\", \"value\":\"0\"}]");
+    }
+    function bt_conn() {
+        ws_send("[{\"id\":\"7208\",\"value\":\"1\"}]");
+        //setTimeout(() => { location.reload(), 10000 });
+        //setTimeout(function(){location.reload(), 10000});
+
+    }
+    function bt_discon() {
+        ws_send("[{\"id\":\"7208\", \"value\":\"0\"}]");
+        setTimeout(function () { location.reload(), 500 });
+    }
+</script>

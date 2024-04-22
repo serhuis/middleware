@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"*.c": "c",
+			"mediator.h": "c",
+			"transport_tcp.h": "c",
+			"tcp_server.h": "c",
+			"drvuart.h": "c",
+			"transport_uart.h": "c"
+		}
+	}
+}

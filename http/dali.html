@@ -1,0 +1,30 @@
+<div>
+    <hr>
+    <table>
+        <form name="sett">
+            <tr>
+                <td>Status :</td>
+                <td><input type="text" id="7207" name="Status" readonly></td>
+            </tr>
+            <tr>
+                <td>Paired device:</td>
+                <td><input type="text" id="7201" name="Paired" readonly /></td>
+            </tr>
+            <tr>
+                <td>Device to pair:</td>
+                <td><input type="text" name="toPairAddr" id="7203" /></td>
+            </tr>
+            <tr>
+                <td>Passkey:</td>
+                <td><input type="text" name="toPairPass" id="7204" /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Pair and connect" /></td>
+            </tr>
+        </form>
+    </table>
+</div>
+<script>
+    document.forms.sett.onsubmit = function () { ws_send_form(this); return false; };
+</script>

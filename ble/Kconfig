@@ -1,0 +1,22 @@
+if ENABLE_BLE
+menu "Zhaga BLE Configuration"
+    config DEFAULT_PEER_ADDR
+        string "LUNA Device address to connect"
+        default "ADDR_ANY"
+        help
+            Enter the peer address in aa:bb:cc:dd:ee:ff form to connect to a specific peripheral
+    config LUNA_PASS_KEY
+        int "Luna BT passkey"
+        default "123456"
+        range 0 999999
+        help
+            Enter the LUNA passkey 
+    config LUNA_OAD_PASS_KEY
+        int "Luna OAD BT passkey"
+        default "123456"
+        range 0 999999
+        help
+            Enter the LUNA passkey 
+
+endmenu
+endif

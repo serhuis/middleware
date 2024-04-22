@@ -1,0 +1,31 @@
+<script>
+    function page_update() {
+        Array.from(document.forms).forEach(frm => { ws_send_form(frm); });
+    }
+    function set_value(id, value) {
+        let elem = document.getElementById(id);
+        if (elem) {
+
+            if (elem.type === "select-one") { update_select(elem, value); }
+            else if (elem.type === "text") {
+                console.log("Update " + elem.type + " " + elem.id + " <" + value + ">");
+                elem.value = value;
+                elem.dispatchEvent(new Event('change'));
+            }
+        }
+    }
+
+    function update_checkbox(id, state) {
+        document.getElementById(id).checked = (Number(state) === 0) ? false : true
+    }
+
+    function update_select(elem, value) {
+        console.log("Update " + elem.type + " id: " + elem.id + "value: " + value);
+        if (value !== "") {
+            var option = document.createElement("option");
+            option.text = value;
+            elem.add(option);
+            //elem.selectedIndex = elem.length - 1;
+        }
+    }
+</script>

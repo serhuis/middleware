@@ -1,0 +1,7 @@
+if ENABLE_FAT_FS
+menu "Zhaga SPIFS"
+	config SPIFS_MOUNT_POINT
+		string "Mount point for SPIFS filesystem"
+		default "/storage"
+endmenu
+endif

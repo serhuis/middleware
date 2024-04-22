@@ -1,0 +1,58 @@
+<script>
+    var url = 'ws://' + window.location.host + '/ws';
+
+    function init() {
+        websocket = new WebSocket(url);
+        websocket.addEventListener('open', () => { onOpen() });
+        websocket.addEventListener('close', (evt) => { console.log(`Closed ${evt.code}`) });
+        websocket.addEventListener('error', (evt) => { console.log(`Error ${evt.code}`) });
+        websocket.addEventListener('message', (evt) => { onMessage(evt) });
+    }
+
+
+    function ws_send_form(form) {
+        var obj = JSON.parse('[]')
+        Array.from(form.elements).forEach(e => {
+            if ((e.type === 'text' || e.type === 'select-one') && (e.name !== "")) {
+                obj.push(JSON.parse("{\"id\": \"" + e.id + "\", \"value\": \"" + e.value + "\"}"));
+            }
+        })
+        websocket.send(JSON.stringify(obj));
+    }
+
+
+    function onOpen() {
+        try {
+            page_update();
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    function onMessage(evt) {
+        let objs = JSON.parse(event.data);
+        objs.forEach((obj) => {
+            var id = "";
+            var val = "";
+            Object.entries(obj).forEach(([key, value]) => { if (key === "id") { id = value }; if (key === "value") { val = value } });
+
+            try {
+                set_value(id, val);
+            } catch (e) {
+                console.log(e);
+            }
+
+        });
+    }
+
+
+
+    function ws_send(data) {
+        var obj = JSON.parse(data)
+        console.log(JSON.stringify(obj));
+        websocket.send(JSON.stringify(obj));
+    }
+
+    window.addEventListener("load", init, false);
+
+</script>

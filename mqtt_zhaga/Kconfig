@@ -1,0 +1,24 @@
+if ENABLE_MQTT_CLIENT
+menu "Zhaga MQTT"
+    config BROKER_URL
+        string "Broker URL"
+        default "mqtt://mqtt.eclipseprojects.io"
+        help
+            URL of the broker to connect to
+    config BROCKER_HOST_IP
+        string "Host ip"
+        default "192.168.0.111" if BROKER_URL = ""
+        help
+            Host IP of the broker to connect to
+    config MQTT_USER_NAME
+        string "User name"
+        default "zhaga"
+        help 
+            Username to connect to brocker
+    config MQTT_PASSWORD
+        string "Password"
+        default "123"
+        help    
+            Password to connect to brocker
+endmenu
+endif
