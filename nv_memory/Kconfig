@@ -1,8 +1,0 @@
-if  ZHAGA_NVS_ENABLE
-menu "Zhaga NV memory"
-
-   config NVS_STORAGE_NAME
-   string "NV partition name"
-   default "ZhagaNVS"
-endmenu
-endif

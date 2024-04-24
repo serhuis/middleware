@@ -1,5 +1,10 @@
+menuconfig ENABLE_BLE
+bool "Enable BLE"
+default true
+help
+    Enable BLE functionality (GATT based)
+
 if ENABLE_BLE
-menu "Zhaga BLE Configuration"
     config DEFAULT_PEER_ADDR
         string "LUNA Device address to connect"
         default "ADDR_ANY"
@@ -17,6 +22,4 @@ menu "Zhaga BLE Configuration"
         range 0 999999
         help
             Enter the LUNA passkey 
-
-endmenu
 endif

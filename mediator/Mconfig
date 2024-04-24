@@ -1,0 +1,22 @@
+menuconfig MEDIATOR
+bool "Mediator"
+default y
+help
+    Enable mediator
+
+if MEDIATOR
+	config TRANSPORT_CNT
+    int "Transports count"
+	range 1 16
+	default 8
+	
+    config REVEIVER_CNT
+	int "Receivers count"
+	range 1 16
+	default 8
+	
+    config ASYNC_QUEUE_LENGTH
+	int "Number of asynchronous requests"
+	range 0 32
+	default 0
+endif  

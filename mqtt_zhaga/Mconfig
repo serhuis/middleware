@@ -1,3 +1,9 @@
+config ENABLE_MQTT_CLIENT
+bool "Enable MQTT"
+default false
+help
+    Enable MQTT client service
+
 if ENABLE_MQTT_CLIENT
 menu "Zhaga MQTT"
     config BROKER_URL

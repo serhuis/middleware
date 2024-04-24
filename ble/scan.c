@@ -6,33 +6,22 @@
 
 #include "misc.h"
 
-#define LOGI(format, ...)                                                     \
-  ESP_LOGI ("", "%s:%d: %s(): " format, __FILE__, __LINE__, __FUNCTION__,     \
-            ##__VA_ARGS__)
-#define LOGD(format, ...)                                                     \
-  ESP_LOGD ("", "%s:%d: %s(): " format, __FILE__, __LINE__, __FUNCTION__,     \
-            ##__VA_ARGS__)
-#define LOGW(format, ...)                                                     \
-  ESP_LOGW ("", "%s:%d: %s(): " format, __FILE__, __LINE__, __FUNCTION__,     \
-            ##__VA_ARGS__)
-#define LOGE(format, ...)                                                     \
-  ESP_LOGE ("", "%s:%d: %s(): " format, __FILE__, __LINE__, __FUNCTION__,     \
-            ##__VA_ARGS__)
-#define LOG_BUF(buf, len)                                                     \
-  ESP_LOG_BUFFER_HEXDUMP (__FILE__, buf, len, ESP_LOG_INFO)
+#define LOGI(format, ...)   ESP_LOGI ("", "%s:%d: %s(): " format, __FILE__, __LINE__, __FUNCTION__, ##__VA_ARGS__)
+#define LOGD(format, ...)   ESP_LOGD ("", "%s:%d: %s(): " format, __FILE__, __LINE__, __FUNCTION__, ##__VA_ARGS__)
+#define LOGW(format, ...)   ESP_LOGW ("", "%s:%d: %s(): " format, __FILE__, __LINE__, __FUNCTION__, ##__VA_ARGS__)
+#define LOGE(format, ...)   ESP_LOGE ("", "%s:%d: %s(): " format, __FILE__, __LINE__, __FUNCTION__, ##__VA_ARGS__)
+#define LOG_BUF(buf, len)   ESP_LOG_BUFFER_HEXDUMP (__FILE__, buf, len, ESP_LOG_INFO)
 
 static const char LUNA_NAME_FILTER[] = "@Luna-";
 
 static void *nodes_mem;
 static volatile struct os_mempool nodes_pool = { 0 };
 static volatile SLIST_HEAD (node_item_list, node_item) nodes;
-
 static volatile SLIST_HEAD (pnode_item_list, node_item) *_pnodes = &nodes;
 
 static uint32_t _total_nodes = 0;
 
-void
-scan_node_find (uint8_t *addr_val, struct ble_node *node)
+void scan_node_find (uint8_t *addr_val, struct ble_node *node)
 {
   LOGD ("%d", _total_nodes);
   if (_total_nodes > 0)
@@ -50,8 +39,7 @@ scan_node_find (uint8_t *addr_val, struct ble_node *node)
     }
 }
 
-void
-scan_node_find_by_name (uint8_t *name, struct ble_node * node)
+void scan_node_find_by_name (uint8_t *name, struct ble_node * node)
 {
     if (_total_nodes > 0)
     {
@@ -68,8 +56,7 @@ scan_node_find_by_name (uint8_t *name, struct ble_node * node)
     }
 }
 
-static void
-scan_free_mem (void)
+static void scan_free_mem (void)
 {
   free (nodes_mem);
   nodes_mem = NULL;
@@ -77,8 +64,7 @@ scan_free_mem (void)
   SLIST_INIT (&nodes);
 }
 
-int
-scan_update_nodes (struct ble_gap_disc_desc desc, char *const name,
+int scan_update_nodes (struct ble_gap_disc_desc desc, char *const name,
                    uint8_t len)
 {
   LOGD ("%d", _total_nodes);
@@ -123,8 +109,7 @@ scan_update_nodes (struct ble_gap_disc_desc desc, char *const name,
   return 0;
 }
 
-extern int
-scan_init (int max_nodes)
+extern int scan_init (int max_nodes)
 {
   LOGI ();
   int rc;

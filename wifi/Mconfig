@@ -1,0 +1,157 @@
+menuconfig ZHAGA_CONNECT_WIFI
+bool "WiFi"
+default y
+help
+    Protocol examples can use Wi-Fi and/or Ethernet to connect to the network.
+    Choose this option to connect with WiFi
+
+if ZHAGA_CONNECT_WIFI
+	config WIFI_SSID_LENGTH_MIN
+    int "Minimal length of SSID string"
+	range 4 4
+	default 4
+	
+    config WIFI_SSID_LENGTH_MAX
+	int "Maximal length of SSID string"
+	range 32 32
+	default 32
+	
+    config WIFI_PASSWORD_LENGTH_MIN
+	int "Minimal length of PASSWORD string"
+	range 4 4
+	default 4
+	
+    config WIFI_PASSWORD_LENGTH_MAX
+	int "Maximal length of PASSWORD string"
+	range 32 32
+	default 32
+	
+    menu "AP config"
+		config WIFI_AP_SSID_PREFIX
+		string "AP SSID prefix"
+		default "@L"
+		help
+			SSID prefix for AP.
+
+	    config WIFI_AP_PASSWORD
+		string "AP Password"
+		default "Tele2TecOds"
+		help
+    		WiFi password. Can be left blank if the network has no security set.
+			
+        config WIFI_AP_DEF_CHANNEL
+        int "Default channel"
+        range 1 10
+        default 7
+		help
+			The default channel.
+
+		config WIFI_AP_MAX_CONN
+		int "Max connections"
+		range 1 8
+		default 8
+		help
+			Maximum WiFi connections.
+
+		config WIFI_AP_HIDE_SSID
+		bool "Hide SSID"
+		default n
+		help	
+			Enable to make AP hidden.
+	endmenu
+		
+	menu "STA config"
+		config WIFI_STA_SSID
+		string "AP to connect to"
+		default "SvetLab"
+		help
+			SSID (network name) for the example to connect to.
+
+	    config WIFI_STA_PASSWORD
+		string "Password"
+		default "sveto4ka"
+		help
+			WiFi password (WPA or WPA2) for the example to use.
+			Can be left blank if the network has no security set.
+
+		choice WIFI_STA_SCAN_METHOD
+    		prompt "WiFi Scan Method"
+	    	default WIFI_STA_STA_SCAN_METHOD_ALL_CHANNEL
+		    help
+			    WiFi scan method:
+			    If "Fast" is selected, scan will end after find SSID match AP.
+			    If "All Channel" is selected, scan will end after scan all the channel.
+
+		    config WIFI_STA_SCAN_METHOD_FAST
+		    bool "Fast"
+		    config WIFI_STA_SCAN_METHOD_ALL_CHANNEL
+		    bool "All Channel"
+		endchoice
+
+		menu "WiFi Scan threshold"
+			config WIFI_STA_SCAN_RSSI_THRESHOLD
+			int "WiFi minimum rssi"
+			range -127 0
+			default -127
+			help
+				The minimum rssi to accept in the scan mode.
+
+			choice WIFI_STA_SCAN_AUTH_MODE_THRESHOLD
+			prompt "WiFi Scan auth mode threshold"
+			default WIFI_STA_STA_AUTH_OPEN
+			help
+				The weakest authmode to accept in the scan mode.
+
+				config WIFI_STA_AUTH_OPEN
+				bool "OPEN"
+			
+            	config WIFI_STA_AUTH_WEP
+				bool "WEP"
+			
+            	config WIFI_STA_AUTH_WPA_PSK
+				bool "WPA PSK"
+			
+            	config WIFI_STA_AUTH_WPA2_PSK
+				bool "WPA2 PSK"
+			
+            	config WIFI_STA_AUTH_WPA_WPA2_PSK
+				bool "WPA WPA2 PSK"
+			
+            	config WIFI_STA_AUTH_WPA2_ENTERPRISE
+				bool "WPA2 ENTERPRISE"
+			
+            	config WIFI_STA_AUTH_WPA3_PSK
+				bool "WPA3 PSK"
+			
+            	config WIFI_STA_AUTH_WPA2_WPA3_PSK
+				bool "WPA2 WPA3 PSK"
+			
+            	config WIFI_STA_AUTH_WAPI_PSK
+				bool "WAPI PSK"
+			endchoice
+
+			config WIFI_STA_MAX_RECONNECT
+			int "Max reconect count"
+			default 30
+			help
+				Reconnect count to activate SOFTAP mode
+		endmenu
+
+			choice WIFI_STA_CONNECT_AP_SORT_METHOD
+				prompt "WiFi Connect AP Sort Method"
+				default WIFI_STA_STA_CONNECT_AP_BY_SIGNAL
+				help
+					WiFi connect AP sort method:
+
+					If "Signal" is selected, Sort matched APs in scan list by RSSI.
+
+					If "Security" is selected, Sort matched APs in scan list by security mode.
+
+				config WIFI_STA_CONNECT_AP_BY_SIGNAL
+					bool "Signal"
+				config WIFI_STA_CONNECT_AP_BY_SECURITY
+					bool "Security"
+			endchoice
+		
+		endmenu
+endif  

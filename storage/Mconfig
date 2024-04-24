@@ -1,0 +1,11 @@
+menuconfig ENABLE_FAT_FS
+bool "FAT filesystem"
+default true
+help
+    Enable filesystem to store loaded files (firmwares, etc...)
+
+if ENABLE_FAT_FS
+	config SPIFS_MOUNT_POINT
+	string "Mount point for SPIFS filesystem"
+	default "/storage"
+endif

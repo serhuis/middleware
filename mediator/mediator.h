@@ -5,10 +5,6 @@
 
 ESP_EVENT_DECLARE_BASE(MEDIATOR_EVENTS); // declaration of the task events family
 
-#define MTOR_MAX_TRANSPORTS     ( 8 )
-#define MTOR_MAX_RECEIVERS      ( 8 )
-#define MTOR_MAX_SUBSCRIPTION   ( MTOR_MAX_TRANSPORTS )
-
 #define FUNC_MIN_HEADER_SIZE    ( 3 )
 #define FUNC_ACK_SIZE           ( 3 )
 
@@ -54,14 +50,14 @@ typedef struct
 typedef struct
 {
     transport_t *transport;
-    uint8_t     topics[MTOR_MAX_RECEIVERS];
+    uint8_t     topics[CONFIG_REVEIVER_CNT];
 } subscription_t;
 
 typedef struct
 {
-    transport_t     *transports[MTOR_MAX_TRANSPORTS];
-    receiver_t      receivers[MTOR_MAX_RECEIVERS];
-    subscription_t  subscriptions[MTOR_MAX_SUBSCRIPTION];
+    transport_t     *transports[CONFIG_TRANSPORT_CNT];
+    receiver_t      receivers[CONFIG_REVEIVER_CNT];
+    subscription_t  subscriptions[CONFIG_ASYNC_QUEUE_LENGTH];
 } mediator_t;
 
 extern void Mtor_init();

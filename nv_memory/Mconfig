@@ -1,0 +1,9 @@
+menuconfig ZHAGA_NVS_ENABLE
+bool "NV memory"
+default true
+
+if ZHAGA_NVS_ENABLE
+    config NVS_STORAGE_NAME
+    string "NV partition name"
+    default "ZhagaNVS"
+endif

@@ -43,15 +43,7 @@ extern void Mtor_init()
     ESP_ERROR_CHECK(esp_event_loop_create(&loop_with_task_args, &_mtor_event_loop));
     ESP_ERROR_CHECK(esp_event_handler_instance_register_with(_mtor_event_loop, MEDIATOR_EVENTS, ESP_EVENT_ANY_ID, Mtor_event_handler, NULL, NULL));
 
-    /*
-      for (int i = 0; i < MTOR_MAX_TRANSPORTS; i++)
-      {
-          LOGI("_mtor.subscription[%d]: %d", i, _mtor.subscriptions[i].transport);
-          for (int j = 0; j < MTOR_MAX_RECEIVERS; j++)
-              LOGI("topic: %d", _mtor.subscriptions[i].topic[j]);
-      }
-  */
-    for (int i = 0; i < MTOR_MAX_RECEIVERS; i++)
+    for (int i = 0; i < CONFIG_REVEIVER_CNT; i++)
         {
         _mtor.receivers[i].topic = -1;
         _mtor.receivers[i].fnRcv = NULL;
@@ -201,7 +193,7 @@ static int Mtor_receive(uint8_t const* in_data, const size_t in_len, uint8_t* ou
     if (in_len < FUNC_MIN_HEADER_SIZE)
         return 0;
 
-    for (i = 0; i < MTOR_MAX_RECEIVERS; i++)
+    for (i = 0; i < CONFIG_REVEIVER_CNT; i++)
         {
         LOGD("receiver: %0.2x, in_data: 0x%0.2x, in_len: %d", _mtor.receivers[i].fnRcv, in_data, in_len);
         if ((_mtor.receivers[i].topic == in_data[1]))
@@ -219,13 +211,13 @@ static size_t Mtor_send(int id, uint8_t* const data, const size_t len)
     {
     transport_t* transport = Mtor_getTransportById(id);
     size_t ret = 0;
-    LOGD("transport: %0.2x, id: %d transport->direct_transport: %0.2x", transport, transport->transport_id, transport->direct_transport);
+//    LOGI("transport: %0.2x, id: %d transport->direct_transport: %0.2x", transport, transport->transport_id, transport->direct_transport);
     if (transport)
         {
         ret = transport->fn_send(data, len);
         if (transport->direct_transport)
             {
-            LOGD("transport->direct_transport id: %0.2x, id: %d", transport->direct_transport, transport->direct_transport->transport_id);
+//            LOGI("transport->direct_transport id: %0.2x, len: %d", transport->direct_transport, len);
             ret = transport->direct_transport->fn_send(data, len);
             }
         }
@@ -237,10 +229,10 @@ static transport_t* Mtor_getTransportBySubId(int topic)
     {
         static int i;
 
-    for (; i < MTOR_MAX_SUBSCRIPTION; ++i)
+    for (; i < CONFIG_ASYNC_QUEUE_LENGTH; ++i)
         {
         LOGI("Explore transport %d %x", i, _mtor.subscriptions[i].transport);
-        for (int j = 0; j < MTOR_MAX_RECEIVERS; j++)
+        for (int j = 0; j < CONFIG_REVEIVER_CNT; j++)
             {
             LOGD("Search topic %x, have topic %x", topic, _mtor.subscriptions[i].topics[j]);
             if (topic == _mtor.subscriptions[i].topics[j])
@@ -253,7 +245,7 @@ static transport_t* Mtor_getTransportBySubId(int topic)
 
 extern int Mtor_registerTransport(transport_t* transport)
     {
-    for (int i = 0; i < MTOR_MAX_TRANSPORTS; i++)
+    for (int i = 0; i < CONFIG_TRANSPORT_CNT; i++)
         {
         if (NULL == _mtor.transports[i])
             {
@@ -269,7 +261,7 @@ extern int Mtor_registerTransport(transport_t* transport)
 
 extern transport_t* Mtor_getTransportById(int id)
     {
-    for (int i = 0; i < MTOR_MAX_TRANSPORTS; i++)
+    for (int i = 0; i < CONFIG_TRANSPORT_CNT; i++)
         {
         if (id == _mtor.transports[i]->transport_id)
             return _mtor.transports[i];
@@ -292,7 +284,7 @@ extern void Mtor_MakeBridge(void* tr1, void* tr2)
 
 extern void Mtor_registerReceiver(int topic, rcv_fn fn_rcv)
     {
-    for (int i = 0; i < MTOR_MAX_RECEIVERS; i++)
+    for (int i = 0; i < CONFIG_REVEIVER_CNT; i++)
         {
         if (_mtor.receivers[i].topic == -1)
             {

@@ -1,0 +1,14 @@
+menuconfig TCP_SOCKET
+bool   "TCP socket"
+default true
+help
+    Enable TCP socket 
+
+if TCP_SOCKET
+    config ZHAGA_TCP_PORT
+    int "Port"
+    range 0 65535
+    default 3000
+    help
+        Local port the example server will listen on.
+endif

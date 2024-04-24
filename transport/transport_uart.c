@@ -15,7 +15,6 @@ static const char *TAG = __FILE__;
 #define espLogE(format, ...) ESP_LOGE("", "%s:%d: %s: " format, __FILE__, __LINE__, __FUNCTION__, ##__VA_ARGS__)
 #define espLogHex(data, len) ESP_LOG_BUFFER_HEX(TAG, data, len)
 
-static int _drv_id = -1;
 static encoder_t _coder = {.decode = NULL, .decodeBoot = NULL, .encode = NULL, .encodeBoot = NULL};
 static volatile uint8_t _rx_buffer[MAX_TRANSPORT_BUFFER] = {0};
 static volatile uint8_t _tx_buffer[MAX_TRANSPORT_BUFFER] = {0};
@@ -31,10 +30,9 @@ static uint8_t *TransportUart_getTxBuffer(void);
 static size_t TransportUart_getTxLength(void);
 static size_t TransportUart_getTxFree(void);
 
-extern void TransportUart_init(uint8_t id, transport_t *transport, drv_send_fn send_drv)
+extern void TransportUart_init(transport_t *transport, drv_send_fn send_drv)
 {
     _uart_transport = transport;
-    _drv_id = id;
     _txFunc = send_drv;
     transport->fn_send = TransportUart_send;
     transport->notify = NULL;           // inited in mediator
@@ -46,7 +44,6 @@ extern void TransportUart_init(uint8_t id, transport_t *transport, drv_send_fn s
     (void)_coder;
     transport->decode = TransportUart_decode;
     transport->encode = TransportUart_encode;
-    espLogD("%0.2x %0.2x", id, transport);
 }
 
 extern void TransportUart_drv_rx_cb(const int drv_id, ...)
@@ -123,13 +120,13 @@ static size_t TransportUart_send(uint8_t *data, size_t len)
         tosend = _tx_wr_idx - _tx_rd_idx;
     }
 
-    espLogD("%d %d", _tx_wr_idx, len);
+//    espLogI("%d %d", _tx_wr_idx, tosend);
     if (_txFunc)
     {
-        size_t sent = _txFunc(_drv_id, pdata, tosend);
+        size_t sent = _txFunc(0, pdata, tosend);
         if ((_tx_rd_idx += sent) == _tx_wr_idx)
             _tx_wr_idx = _tx_rd_idx = 0;
-        espLogD("Sent %d of %d", sent, len);
+        espLogD("Sent %d of %d", sent, tosend);
         return sent;
     }
     return 0;
