@@ -1,0 +1,129 @@
+{
+	"kind" : "toolchains",
+	"toolchains" : 
+	[
+		{
+			"compiler" : 
+			{
+				"id" : "GNU",
+				"implicit" : {},
+				"path" : "/home/serh/.espressif/tools/riscv32-esp-elf/esp-2021r2-patch5-8.4.0/riscv32-esp-elf/bin/riscv32-esp-elf-gcc",
+				"version" : ""
+			},
+			"language" : "ASM",
+			"sourceFileExtensions" : 
+			[
+				"s",
+				"S",
+				"asm"
+			]
+		},
+		{
+			"compiler" : 
+			{
+				"id" : "GNU",
+				"implicit" : 
+				{
+					"includeDirectories" : 
+					[
+						"/media/linux_ext/serh/.espressif/tools/riscv32-esp-elf/esp-2021r2-patch5-8.4.0/riscv32-esp-elf/lib/gcc/riscv32-esp-elf/8.4.0/include",
+						"/media/linux_ext/serh/.espressif/tools/riscv32-esp-elf/esp-2021r2-patch5-8.4.0/riscv32-esp-elf/lib/gcc/riscv32-esp-elf/8.4.0/include-fixed",
+						"/media/linux_ext/serh/.espressif/tools/riscv32-esp-elf/esp-2021r2-patch5-8.4.0/riscv32-esp-elf/riscv32-esp-elf/sys-include",
+						"/media/linux_ext/serh/.espressif/tools/riscv32-esp-elf/esp-2021r2-patch5-8.4.0/riscv32-esp-elf/riscv32-esp-elf/include"
+					],
+					"linkDirectories" : 
+					[
+						"/media/linux_ext/serh/.espressif/tools/riscv32-esp-elf/esp-2021r2-patch5-8.4.0/riscv32-esp-elf/lib/gcc/riscv32-esp-elf/8.4.0/rv32imc/ilp32",
+						"/media/linux_ext/serh/.espressif/tools/riscv32-esp-elf/esp-2021r2-patch5-8.4.0/riscv32-esp-elf/riscv32-esp-elf/lib/rv32imc/ilp32",
+						"/media/linux_ext/serh/.espressif/tools/riscv32-esp-elf/esp-2021r2-patch5-8.4.0/riscv32-esp-elf/lib/gcc/riscv32-esp-elf/8.4.0",
+						"/media/linux_ext/serh/.espressif/tools/riscv32-esp-elf/esp-2021r2-patch5-8.4.0/riscv32-esp-elf/lib/gcc",
+						"/media/linux_ext/serh/.espressif/tools/riscv32-esp-elf/esp-2021r2-patch5-8.4.0/riscv32-esp-elf/riscv32-esp-elf/lib"
+					],
+					"linkFrameworkDirectories" : [],
+					"linkLibraries" : 
+					[
+						"gcc",
+						"c",
+						"nosys",
+						"c",
+						"gcc",
+						"gcc",
+						"c",
+						"nosys"
+					]
+				},
+				"path" : "/home/serh/.espressif/tools/riscv32-esp-elf/esp-2021r2-patch5-8.4.0/riscv32-esp-elf/bin/riscv32-esp-elf-gcc",
+				"version" : "8.4.0"
+			},
+			"language" : "C",
+			"sourceFileExtensions" : 
+			[
+				"c",
+				"m"
+			]
+		},
+		{
+			"compiler" : 
+			{
+				"id" : "GNU",
+				"implicit" : 
+				{
+					"includeDirectories" : 
+					[
+						"/media/linux_ext/serh/.espressif/tools/riscv32-esp-elf/esp-2021r2-patch5-8.4.0/riscv32-esp-elf/riscv32-esp-elf/include/c++/8.4.0",
+						"/media/linux_ext/serh/.espressif/tools/riscv32-esp-elf/esp-2021r2-patch5-8.4.0/riscv32-esp-elf/riscv32-esp-elf/include/c++/8.4.0/riscv32-esp-elf/rv32imc/ilp32",
+						"/media/linux_ext/serh/.espressif/tools/riscv32-esp-elf/esp-2021r2-patch5-8.4.0/riscv32-esp-elf/riscv32-esp-elf/include/c++/8.4.0/backward",
+						"/media/linux_ext/serh/.espressif/tools/riscv32-esp-elf/esp-2021r2-patch5-8.4.0/riscv32-esp-elf/lib/gcc/riscv32-esp-elf/8.4.0/include",
+						"/media/linux_ext/serh/.espressif/tools/riscv32-esp-elf/esp-2021r2-patch5-8.4.0/riscv32-esp-elf/lib/gcc/riscv32-esp-elf/8.4.0/include-fixed",
+						"/media/linux_ext/serh/.espressif/tools/riscv32-esp-elf/esp-2021r2-patch5-8.4.0/riscv32-esp-elf/riscv32-esp-elf/sys-include",
+						"/media/linux_ext/serh/.espressif/tools/riscv32-esp-elf/esp-2021r2-patch5-8.4.0/riscv32-esp-elf/riscv32-esp-elf/include"
+					],
+					"linkDirectories" : 
+					[
+						"/media/linux_ext/serh/.espressif/tools/riscv32-esp-elf/esp-2021r2-patch5-8.4.0/riscv32-esp-elf/lib/gcc/riscv32-esp-elf/8.4.0/rv32imc/ilp32",
+						"/media/linux_ext/serh/.espressif/tools/riscv32-esp-elf/esp-2021r2-patch5-8.4.0/riscv32-esp-elf/riscv32-esp-elf/lib/rv32imc/ilp32",
+						"/media/linux_ext/serh/.espressif/tools/riscv32-esp-elf/esp-2021r2-patch5-8.4.0/riscv32-esp-elf/lib/gcc/riscv32-esp-elf/8.4.0",
+						"/media/linux_ext/serh/.espressif/tools/riscv32-esp-elf/esp-2021r2-patch5-8.4.0/riscv32-esp-elf/lib/gcc",
+						"/media/linux_ext/serh/.espressif/tools/riscv32-esp-elf/esp-2021r2-patch5-8.4.0/riscv32-esp-elf/riscv32-esp-elf/lib"
+					],
+					"linkFrameworkDirectories" : [],
+					"linkLibraries" : 
+					[
+						"stdc++",
+						"m",
+						"gcc",
+						"c",
+						"nosys",
+						"c",
+						"gcc",
+						"gcc",
+						"c",
+						"nosys"
+					]
+				},
+				"path" : "/home/serh/.espressif/tools/riscv32-esp-elf/esp-2021r2-patch5-8.4.0/riscv32-esp-elf/bin/riscv32-esp-elf-g++",
+				"version" : "8.4.0"
+			},
+			"language" : "CXX",
+			"sourceFileExtensions" : 
+			[
+				"C",
+				"M",
+				"c++",
+				"cc",
+				"cpp",
+				"cxx",
+				"mm",
+				"mpp",
+				"CPP",
+				"ixx",
+				"cppm"
+			]
+		}
+	],
+	"version" : 
+	{
+		"major" : 1,
+		"minor" : 0
+	}
+}

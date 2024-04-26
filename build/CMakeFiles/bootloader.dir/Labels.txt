@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+/home/serh/_work/workspace/Middleware/build/CMakeFiles/bootloader
+/home/serh/_work/workspace/Middleware/build/CMakeFiles/bootloader.rule
+/home/serh/_work/workspace/Middleware/build/CMakeFiles/bootloader-complete.rule
+/home/serh/_work/workspace/Middleware/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+/home/serh/_work/workspace/Middleware/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+/home/serh/_work/workspace/Middleware/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+/home/serh/_work/workspace/Middleware/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+/home/serh/_work/workspace/Middleware/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+/home/serh/_work/workspace/Middleware/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+/home/serh/_work/workspace/Middleware/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule

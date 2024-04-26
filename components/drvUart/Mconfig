@@ -1,0 +1,96 @@
+menuconfig UART_CTRL
+bool "Custom UART configuration"
+default true
+
+if UART_CTRL
+menu "UART driver configuration"
+	choice UART_PORT
+		prompt "UART port"
+		default UART_0_PORT
+
+		config UART_0_PORT
+			bool "UART 0"
+			help
+				Select UART_0
+		config UART_1_PORT
+			bool "UART 1"
+			help
+				Select UART_1
+	endchoice
+	
+	choice
+		prompt "Baudrate"
+		default BAUD_57600
+
+		config BAUD_9600
+			bool "9600"
+		config BAUD_14400
+			bool "14400"
+		config BAUD_19200
+			bool "19200"
+		config BAUD_28800
+			bool "28800"
+		config BAUD_38400
+			bool "38400"
+		config BAUD_57600
+			bool "57600"
+		config BAUD_115200
+			bool "115200"
+		config BAUD_256000
+			bool "256000"
+	endchoice
+	
+	choice
+		prompt "Data bits"
+		default 8_DATA_BITS
+
+		config 5_DATA_BITS
+			bool "5 data bits"
+		config 6_DATA_BITS
+			bool "6 data bits"
+		config 7_DATA_BITS
+			bool "7 data bits"
+		config 8_DATA_BITS
+			bool "8 data bits"
+	endchoice
+	
+	choice
+		prompt "Parity"
+		default PARITY_DISABLE
+
+		config PARITY_DISABLE
+			bool "Disable UART parity"
+		config UART_PARITY_EVEN
+			bool "Enable UART even parity"
+		config UART_PARITY_ODD
+			bool "Enable UART odd parity"
+		
+	endchoice
+	
+	choice
+		prompt "Stop bits"
+		default STOP_BITS_1
+
+		config STOP_BITS_1
+			bool "Stop bit: 1 bit"
+		config STOP_BITS_1_5
+			bool "Stop bit: 1.5 bits"
+		config STOP_BITS_2
+			bool "Stop bit: 2 bits"
+	endchoice
+	
+	choice
+		prompt "Flow control"
+		default FLOWCTRL_DISABLED
+
+		config FLOWCTRL_DISABLED
+			bool "Disable hardware flow control"
+		config FLOWCTRL_RTS
+			bool "RX hardware flow control (rts)"
+		config FLOWCTRL_CTS
+			bool "TX hardware flow control (cts)"
+		config FLOWCTRL_CTS_RTS
+			bool "Hardware flow control (rts/cts)"
+	endchoice
+endmenu
+endif

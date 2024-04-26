@@ -1,0 +1,38 @@
+menuconfig PIN_CTRL
+bool "Custom pins configurations"
+default true
+
+if PIN_CTRL
+menu "GPIO pins configuration"
+	menu "Obsolete GPIO configuration for ESP-8266 (for reference only)"
+	config STM_RESET_PIN_ESP8266
+		int "STM32 RESET pin (defined for ESP8266)"
+		range 12 12
+		default 12
+
+	config STM_BOOT0_PIN_ESP8266
+		int "STM32 BOOT pin (defined for ESP8266)"
+		range 14 14
+		default 14
+	endmenu
+
+	config STM_RESET_PIN
+		int "STM32 Reset pin"
+		range 0 21
+		default 0
+		help
+			GPIO pin for STM reset
+	config STM_BOOT0_PIN
+		int "STM32 BOOT pin"
+		range 0 21
+		default 1
+		help
+			GPIO pin for STM BOOT enable
+	config WAKE_UP_PIN
+		int "Pin to wake up from sleep"
+		range 0 21
+		default 3
+		help
+			Pin to wake up from sleep
+endmenu
+endif

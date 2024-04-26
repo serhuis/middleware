@@ -1,0 +1,74 @@
+{
+	"backtrace" : 2,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_custom_target",
+			"fail_at_build_time"
+		],
+		"files" : 
+		[
+			"/home/serh/esp-idf/tools/cmake/utilities.cmake",
+			"/home/serh/_work/esp/esp-idf-v4.4.7/esp-idf/components/partition_table/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 70,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 223,
+				"parent" : 1
+			}
+		]
+	},
+	"id" : "partition-table::@8e7a60ee4fe55e1aaabf",
+	"name" : "partition-table",
+	"paths" : 
+	{
+		"build" : "esp-idf/partition_table",
+		"source" : "/home/serh/_work/esp/esp-idf-v4.4.7/esp-idf/components/partition_table"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		},
+		{
+			"name" : "CMake Rules",
+			"sourceIndexes" : 
+			[
+				1
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/esp-idf/partition_table/CMakeFiles/partition-table",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/esp-idf/partition_table/CMakeFiles/partition-table.rule",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "UTILITY"
+}

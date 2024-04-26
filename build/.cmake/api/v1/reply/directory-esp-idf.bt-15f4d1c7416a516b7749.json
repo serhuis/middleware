@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "esp-idf/bt",
+		"source" : "/home/serh/_work/esp/esp-idf-v4.4.7/esp-idf/components/bt"
+	}
+}

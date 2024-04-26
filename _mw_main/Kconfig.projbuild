@@ -1,9 +1,0 @@
-menu "MiddleWare"
-    rsource "../nv_memory/Mconfig"       
-    rsource "../storage/Mconfig"
-    rsource "../ble/Mconfig"
-    rsource "../wifi/Mconfig"
-    rsource "../mqtt_zhaga/Mconfig"
-    rsource "../tcp_server/Mconfig"
-    rsource "../mediator/Mconfig"
-endmenu

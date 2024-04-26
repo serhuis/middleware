@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "esp-idf/esp32c3",
+		"source" : "/home/serh/_work/esp/esp-idf-v4.4.7/esp-idf/components/esp32c3"
+	}
+}
